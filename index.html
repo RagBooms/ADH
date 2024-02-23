@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portfolios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.5s ease;
+        }
+
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            justify-content: space-between;
+        }
+
+        header a{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            /* background-color: #fff; */
+            border: none;
+            cursor: pointer;
+            outline: none;
+            /* border-radius: 50%; */
+            padding: 10px;
+            font-size: 14px;
+            /* transition: background-color 0.3s ease; */
+        }
+
+        nav {
+            background-color: #007bff;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        h1 {
+            color: #fafafa;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #007bff;
+            background: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            padding: 10px;
+            outline: none;
+        }
+
+        .slider-button.prev {
+            left: 10px;
+        }
+
+        .slider-button.next {
+            right: 10px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            border-radius: 50%;
+            padding: 10px;
+            font-size: 24px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-mode-toggle::before {
+            content: '\2B22'; /* Unicode character for a half-moon */
+        }
+
+        .dark-mode-toggle.dark-mode::before {
+            content: '\1F31A'; /* Unicode character for a sun */
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Student Portfolios</h1>
+        <a href="">Login/SignUp</a>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#explore">Explore</a>
+        <a href="#services">Services</a>
+        <!-- Add more navigation links as needed -->
+    </nav>
+
+    <section id="home">
+        <h2>Welcome to our platform!</h2>
+        <p>Discover amazing student portfolios and showcase your own talent. Join our community of learners and creators.</p>
+
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide"><img src="BG Img.jpg" alt="Image 1"></div>
+                <div class="slide"><img src="matt-ragland-02z1I7gv4ao-unsplash.jpg" alt="Image 2"></div>
+                <div class="slide"><img src="Portfolio Attache.jpg" alt="Image 3"></div>
+            </div>
+            <button class="slider-button prev" onclick="prevSlide()">❮</button>
+            <button class="slider-button next" onclick="nextSlide()">❯</button>
+        </div>
+
+        <a href="#explore" class="cta-button">Explore Portfolios</a>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>Explore the range of services we offer to enhance your learning experience and portfolio creation.</p>
+        <!-- Add more content related to services -->
+    </section>
+
+    <!-- Add more sections or content as needed -->
+
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()"></button>
+
+    <footer>
+        <p>&copy; 2024 Student Portfolios. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            const offset = -currentSlide * 100 + '%';
+            slider.style.transform = 'translateX(' + offset + ')';
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+    </script>
+
+</body>
+</html>
